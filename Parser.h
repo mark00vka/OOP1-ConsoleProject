@@ -1,5 +1,6 @@
 #ifndef PARSER_H
 #define PARSER_H
+
 #include <string>
 #include "input_output.h"
 
@@ -23,7 +24,7 @@ public:
                 return ERROR_CONST;
             }
             *start = i+j;
-            return line.substr(i, j);
+            return line.substr(i,  j);
         }
         else
             return NONE_CONST;
@@ -45,7 +46,13 @@ public:
             return line.substr(i + 1, j - i - 1);
         } else {
             for (j = i; !isspace(line[j]) && line[j] != '\0'; j++) {}
-            string argument = read_arguments_file(line.substr(i, j - i));
+            string argument;
+
+            if (line[i] == '<')
+                argument = read_arguments_file(line.substr(i+1, j-i-1));
+            else
+                argument = read_arguments_file(line.substr(i, j - i));
+
             *start = j;
             if (argument == ERROR_CONST) {
                 return ERROR_CONST;
@@ -56,13 +63,12 @@ public:
 
     virtual string parse_output(string line, int* start) {
         int i = *start;
-        int j;
-        for (j = i; isspace(line[i]) && line[i] != '\0'; i++) {}
-        if (line[j] == '>') {
-            return line.substr(line.find('>') + 1, line.length() - i - 1);
+        int j = i;
+        for (; !isspace(line[j]) && line[j] != '\0'; j++) {}
+        if (line[i] == '>') {
+            return line.substr(i + 1, j - i - 1);
         }
-        else if (line[j] != '\0') {
-            cout << line[j];
+        else if (line[i] != '\0' && !isspace(line[i])) {
             write_to_console("Error - expected symbol > before a filename");
             return ERROR_CONST;
         } else
@@ -70,9 +76,9 @@ public:
     }
 };
 
-class ParserFile : public Parser {
+class FilenameParser : public Parser {
 public:
-    ParserFile() = default;
+    FilenameParser() = default;
 
     string parse_argument(string line, int* start) override {
         int i = *start;

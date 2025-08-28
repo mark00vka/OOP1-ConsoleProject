@@ -7,7 +7,7 @@ class TimeCommand : Command {
 public:
     TimeCommand() {}
 
-    virtual void run();
+    virtual string run();
 
     virtual string get_command_name();
 };

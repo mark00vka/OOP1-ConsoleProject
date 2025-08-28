@@ -10,6 +10,7 @@ using namespace std;
 const string CONSOLE_CONST = "__CONSOLE__CONST";
 const string ERROR_CONST = "__ERROR__CONST";
 const string NONE_CONST = "__NONE__CONST";
+const string PIPE_CONST = "__PIPE__CONST";
 
 void set_command_prompt(string p);
 

@@ -6,9 +6,9 @@ class TouchCommand : public ArgumentCommand {
 public:
     TouchCommand() = default;
 
-    void interpret(std::string line) override;
+    string interpret(string line) override;
 
-    virtual void run();
+    virtual string run();
 
     virtual string get_command_name();
 };

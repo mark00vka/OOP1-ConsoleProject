@@ -12,16 +12,16 @@ public:
     OptionCommand() = default;
     ~OptionCommand();
 
-    virtual void run() {}
+    virtual string run() = 0;
 
     virtual string get_command_name() = 0;
 
-    virtual void interpret(string line);
+    virtual string interpret(string line);
+
+    virtual string get_expected_format();
 
 protected:
     vector<Option*> options;
-
-    virtual string get_expected_format(string command);
 
     virtual bool check_syntax();
 };

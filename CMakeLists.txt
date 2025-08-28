@@ -7,7 +7,6 @@ add_executable(OOP1 main.cpp
         ConsoleReader.cpp
         input_output.cpp
         OptionCommands/WCCommand.cpp
-        OptionCommands/WC-cCommand.cpp
         "AbstractClasses/OptionCommand.cpp"
         ArgumentCommands/TruncateCommand.cpp
         ArgumentCommands/TouchCommand.cpp
@@ -18,6 +17,9 @@ add_executable(OOP1 main.cpp
         Commands/DateCommand.cpp
         "AbstractClasses/Command.cpp"
         "AbstractClasses/ArgumentCommand.cpp"
-        OptionCommands/WC-wCommand.cpp
         "AbstractClasses/Option.h"
-        Parser.h)
+        Parser.h
+        ArgumentCommands/TrCommand.cpp
+        ArgumentCommands/TrCommand.h
+        OptionCommands/HeadCommand.cpp
+        ArgumentCommands/BatchCommand.cpp)

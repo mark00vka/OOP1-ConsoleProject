@@ -1,4 +1,5 @@
 #include "input_output.h"
+#include "Parser.h"
 
 const int MAX_CONSOLE_LINE = 512;
 const int MAX_STRING_SIZE = 512;
@@ -21,7 +22,7 @@ char* read_arguments_file(string filename) {
         line[n] = '\0';
         return line;
     } else {
-        write_to_console("File doesn't exist");
+        write_to_console("Error - file " + filename + " doesn't exist");
         return const_cast<char *>(ERROR_CONST.c_str());
     }
 }
@@ -64,8 +65,25 @@ void write_to_console(string text) {
 }
 
 void write_to_file(string text, string filename) {
-    ofstream file (filename);
-    file << text;
+    if (filename[0] == '>') {
+        int i = 1;
+        Parser::move_to_non_space(filename, &i);
+
+        filename = filename.substr(i);
+        string fileText = read_arguments_file(filename);
+
+        ofstream file (filename);
+        file << fileText << text;
+        file.close();
+    } else {
+        int i = 0;
+        Parser::move_to_non_space(filename, &i);
+
+        filename = filename.substr(i);
+        ofstream file (filename);
+        file << text;
+        file.close();
+    }
 }
 
 void set_command_prompt(string p) {

@@ -6,9 +6,11 @@ class RemoveCommand : public ArgumentCommand {
 public:
     RemoveCommand() {}
 
-    virtual void run();
+    virtual string run();
 
     virtual string get_command_name();
+
+    string interpret(string line);
 };
 
 

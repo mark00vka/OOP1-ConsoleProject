@@ -14,17 +14,21 @@ public:
 
     virtual string get_command_name() = 0;
 
-    virtual void run() = 0;
+    virtual string run() = 0;
 
-    virtual void interpret(string line);
+    virtual string interpret(string line);
+
+    void set_argument(string pipe_argument);
+
+    void set_output_to_pipe();
+
+    virtual string get_expected_format();
 
 protected:
 
     virtual void parse_line(Parser* parser, string line);
 
     string option, argument, output;
-
-    virtual string get_expected_format(string command);
 
     virtual bool check_syntax();
 };

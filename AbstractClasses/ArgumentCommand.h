@@ -7,11 +7,11 @@ public:
     ArgumentCommand() = default;
     ~ArgumentCommand() override = default;
 
-    virtual void interpret(string line);
+    virtual string interpret(string line);
+
+    virtual string get_expected_format();
 
 protected:
-
-    virtual string get_expected_format(string command);
 
     virtual bool check_syntax();
 };

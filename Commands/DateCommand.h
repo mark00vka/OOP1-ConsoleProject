@@ -6,7 +6,7 @@
 class DateCommand : Command {
 public:
 
-    virtual void run();
+    virtual string run();
 
     virtual string get_command_name();
 };

@@ -9,7 +9,7 @@ public:
     static bool start();
 
 protected:
-    static void call_command(string line);
+    static void start_pipe(string line);
 
     static string read(string line);
 

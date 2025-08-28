@@ -6,7 +6,7 @@ class TruncateCommand : public ArgumentCommand {
 public:
     TruncateCommand() {}
 
-    virtual void run();
+    virtual string run();
 
     virtual string get_command_name();
 };
